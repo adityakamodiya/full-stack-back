@@ -27,10 +27,8 @@ app.post("/add", (req, res) => {
 app.get('/', (req, res) => {
     // if (students.length > 0) {
         res.json(students)
-    // }
-    // else {
-    //     res.send('no data found')
-    // }
+    // 
+   
 })
 
 app.delete('/delete/:id',(req,res)=>{
@@ -49,8 +47,28 @@ app.delete('/delete/:id',(req,res)=>{
 
 
 app.get('/edit/:index',(req,res)=>{
-         let x = req.body
-         console.log(x)
-         res.json(students)
+         let x = req.url.split('/edit/')[1]
+         
+        //  console.log(x)
+
+
+         res.json({name:students[x].name,age:students[x].age,phone:students[x].phone})
+})
+app.put('/put/:index',(req,res)=>{
+    let y = req.url.split('/put/')[1]
+    let x = req.body
+    
+    //  console.log(y)
+    if(y==0){   
+        // students.pop('')
+        
+         students.splice(0,1,x)
+        res.json(students)
+    // students[y].push(x)
+}
+    else{
+        students.splice(y,y,x)
+        res.json(students)
+    }
 })
 app.listen(port, () => console.log("Server started"))
