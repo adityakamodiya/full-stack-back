@@ -48,20 +48,20 @@ app.delete('/delete/:id',(req,res)=>{
 
 app.get('/edit/:index',(req,res)=>{
          let x = req.url.split('/edit/')[1]
-         
+         let id =   Number(x)+1
         //  console.log(x)
 
 
-         res.json({name:students[x].name,age:students[x].age,phone:students[x].phone})
+         res.json({id, name:students[x].name,age:students[x].age,phone:students[x].phone})
 })
 app.put('/put/:index',(req,res)=>{
     let y = req.url.split('/put/')[1]
     let x = req.body
-    
-    //  console.log(y)
+    // res.send(req.body)
+    //  console.log(x)
     if(y==0){   
         // students.pop('')
-        
+                        
          students.splice(0,1,x)
         res.json(students)
     // students[y].push(x)
